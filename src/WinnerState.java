@@ -1,32 +1,32 @@
-public class WinnerState extends GumballState{
-    public WinnerState(GumballMachineWithState gumballMachine){
-        super(gumballMachine);
+public class WinnerState implements GumballState{
+    GumballMachine gm;
+
+
+    public WinnerState(GumballMachine gm){
+        this.gm = gm;
     }
-    public GumballState insertQuarterBehavior() {
+    public void insertQuarterBehavior() {
         System.out.println("Please wait, we're already giving you gumballs");
-        return this;
     }
 
     @Override
-    public GumballState ejectQuarterBehavior() {
+    public void ejectQuarterBehavior() {
         System.out.println("Sorry, you already turned the crank");
-        return this;
     }
 
     @Override
-    public GumballState turnCrankBehavior() {
+    public void turnCrankBehavior() {
         System.out.println("Turning twice doesn't get you another gumball");
-        return this;
     }
 
     @Override
-    public GumballState dispenseBehavior() {
+    public void dispenseBehavior() {
         System.out.println("You Winned an Extra Gumball");
-        gumballMachine.winnerPromoSold();
-        if(gumballMachine.getCount() <= 0)
-            return new SoldOutState(gumballMachine);
+        gm.winnerPromoSold();
+        if(gm.getCount() <= 0)
+            gm.setState(gm.getSoldOut());
         else
-            return new NoQuarterState(gumballMachine);
+            gm.setState(gm.getNoQuarter());
     }
 
     @Override

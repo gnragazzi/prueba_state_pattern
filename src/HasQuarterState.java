@@ -1,38 +1,36 @@
-public class HasQuarterState extends GumballState{
-    public HasQuarterState(GumballMachineWithState gm) {
-        super(gm);
+public class HasQuarterState implements GumballState{
+    private GumballMachine gm;
+
+    public HasQuarterState(GumballMachine gm) {
+        this.gm = gm;
     }
 
     @Override
-    public GumballState insertQuarterBehavior() {
+    public void insertQuarterBehavior() {
         System.out.println("You can't insert another quarter");
-        return this;
     }
 
     @Override
-    public GumballState ejectQuarterBehavior() {
-
+    public void ejectQuarterBehavior() {
         System.out.println("Quarter returned");
-        return new NoQuarterState(gumballMachine);
+        gm.setState(gm.getNoQuarter());
     }
 
     @Override
-    public GumballState turnCrankBehavior() {
+    public void turnCrankBehavior() {
         System.out.println("You turned the crank");
-        GumballState soldState ;
-        if(gumballMachine.isWinner()){
-            soldState = new WinnerState(gumballMachine);
+        if(gm.isWinner()){
+            gm.setState(gm.getWinner());
         }
         else {
-            soldState = new SoldState(gumballMachine);
+            gm.setState(gm.getSold());
         }
-        return soldState.dispenseBehavior();
+        gm.dispense();
     }
 
     @Override
-    public GumballState dispenseBehavior() {
+    public void dispenseBehavior() {
         System.out.println("No gumball dispensed");
-        return this;
     }
 
     @Override

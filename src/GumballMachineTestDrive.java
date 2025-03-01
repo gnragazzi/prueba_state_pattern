@@ -2,7 +2,7 @@ public class GumballMachineTestDrive {
     public static void main(String[] args)
     {
         //GumballMachine gumballMachine = new GumballMachine(5);
-        GumballMachineWithState gumballMachine = new GumballMachineWithState(10,3);
+        GumballMachine gumballMachine = new GumballMachine(10,3);
 
         System.out.println(gumballMachine);
 

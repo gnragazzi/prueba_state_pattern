@@ -1,13 +1,7 @@
-public abstract class GumballState {
-    GumballMachineWithState gumballMachine;
-
-    public GumballState(GumballMachineWithState gm){
-        this.gumballMachine = gm;
-    }
-
-    public abstract GumballState insertQuarterBehavior();
-    public abstract GumballState ejectQuarterBehavior();
-    public abstract GumballState turnCrankBehavior();
-    public abstract GumballState dispenseBehavior();
+public interface GumballState {
+    public abstract void insertQuarterBehavior();
+    public abstract void ejectQuarterBehavior();
+    public abstract void turnCrankBehavior();
+    public abstract void dispenseBehavior();
     public abstract String printBehavior();
 }

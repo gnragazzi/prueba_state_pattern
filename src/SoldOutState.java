@@ -1,30 +1,29 @@
-public class SoldOutState extends GumballState {
-    public SoldOutState(GumballMachineWithState gumballMachineWithState) {
-        super(gumballMachineWithState);
+public class SoldOutState implements GumballState {
+    GumballMachine gm;
+
+    public SoldOutState(GumballMachine gm) {
+        this.gm = gm;
+
     }
 
     @Override
-    public GumballState insertQuarterBehavior() {
+    public void insertQuarterBehavior() {
         System.out.println("You can't insert a quarter: the machine is sold out");
-        return this;
     }
 
     @Override
-    public GumballState ejectQuarterBehavior() {
+    public void ejectQuarterBehavior() {
         System.out.println("You can't Eject... You haven't inserted a quarter.");
-        return this;
     }
 
     @Override
-    public GumballState turnCrankBehavior() {
+    public void turnCrankBehavior() {
         System.out.println("You turned, but there are no gumballs");
-        return this;
     }
 
     @Override
-    public GumballState dispenseBehavior() {
+    public void dispenseBehavior() {
         System.out.println("No gumball dispensed");
-        return this;
     }
 
     @Override
